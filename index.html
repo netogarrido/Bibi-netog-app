@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>ConFIA · Bibi & Netog v20</title>
+<title>ConFIA · Bibi & Netog v21</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -253,7 +253,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);font-size:14px;mi
 <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
 <aside class="sidebar" id="sidebar">
-  <div class="sb-brand">ConF I.A.<small id="sbVersion">Bibi &amp; Netog v20</small></div>
+  <div class="sb-brand">ConF I.A.<small id="sbVersion">Bibi &amp; Netog v21</small></div>
   <button class="sb-item on" onclick="go('dashboard')"><span class="sb-ico">📊</span> Dashboard</button>
   <div class="sb-section">Financeiro</div>
   <button class="sb-item" onclick="go('lancamentos')"><span class="sb-ico">📋</span> Lançamentos</button>
@@ -542,7 +542,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);font-size:14px;mi
 
 // Fonte única do rótulo de versão: o <title> e o <small> de .sb-brand derivam daqui no boot.
 // Ao subir a versão, atualize esta constante E os literais do HTML (title + sb-brand) juntos.
-const APP_VERSION='v20';
+const APP_VERSION='v21';
 
 // ═══════════════════════════════════════════
 // ESTADO
@@ -705,7 +705,7 @@ async function syncAll(){
       S._lancRevCol=iRev>=0?_colLetter(iRev+1):'';
       S.lancamentos=lanc.slice(1).map((r,ix)=>{
         if(!r||r.length<5||!r[0])return null;
-        return{id:String(r[0]||''),id_grupo:String(r[1]||''),dt_transacao:parseDate(r[2]),dt_competencia:compDate(r[3]),dt_liquidacao:parseDate(r[4]),tipo:String(r[5]||'').toLowerCase(),classe:String(r[6]||''),categoria:String(r[7]||''),subcategoria:String(r[8]||''),moeda:String(r[9]||'BRL'),forma:String(r[10]||'').toLowerCase(),valor_total:parseNum(r[11]),valor:parseNum(r[12]),parcelas:parseInt(r[13])||1,num_parcela:parseInt(r[14])||1,conta_origem:String(r[15]||''),conta_destino:String(r[16]||''),nome_ativo:String(r[17]||''),cartao:String(r[18]||''),fatura_ref:String(r[19]||''),reembolsavel:String(r[20]||''),tipo_reembolso:String(r[21]||''),status_reembolso:String(r[22]||''),favorecido:String(r[23]||''),descricao:String(r[24]||''),desc_importada:String(r[25]||''),status:String(r[26]||'').toLowerCase(),origem:String(r[28]||''),fechado:String(r[29]||''),confianca:iConf>=0?String(r[iConf]||''):'',doc_origem:iDoc>=0?String(r[iDoc]||''):'',revisado:iRev>=0?String(r[iRev]||''):'',_row:ix+2};
+        return{id:String(r[0]||''),id_grupo:String(r[1]||''),dt_transacao:parseDate(r[2]),dt_competencia:compDate(r[3]),dt_liquidacao:parseDate(r[4]),tipo:String(r[5]||'').toLowerCase(),classe:String(r[6]||''),categoria:String(r[7]||''),subcategoria:String(r[8]||''),moeda:String(r[9]||'BRL'),forma:String(r[10]||'').toLowerCase(),valor_total:parseNum(r[11]),valor:parseNum(r[12]),parcelas:parseInt(r[13])||1,num_parcela:parseInt(r[14])||1,conta_origem:String(r[15]||''),conta_destino:String(r[16]||''),nome_ativo:String(r[17]||''),cartao:String(r[18]||''),fatura_ref:String(r[19]||''),reembolsavel:String(r[20]||''),tipo_reembolso:String(r[21]||''),status_reembolso:String(r[22]||''),favorecido:String(r[23]||''),descricao:String(r[24]||''),desc_importada:String(r[25]||''),status:String(r[26]||'').toLowerCase(),conciliacao:String(r[27]||''),origem:String(r[28]||''),fechado:String(r[29]||''),confianca:iConf>=0?String(r[iConf]||''):'',doc_origem:iDoc>=0?String(r[iDoc]||''):'',revisado:iRev>=0?String(r[iRev]||''):'',_row:ix+2};
       }).filter(Boolean).filter(t=>t.id&&t.valor);
     }
 
@@ -2111,7 +2111,7 @@ const FIELD_MAP={
   Contas:{id_conta:'id',nome_conta:'nome',tipo_conta:'tipo',moeda:'moeda',atual:'atual',apelido_para_importacao:'apelido'},
   Ativos:{id_ativo:'id',nome_ativo:'nome',conta_relacionada:'conta',categoria_patrimonial:'catPat',atual:'atual',moeda_transacao:'moeda',tipo_ativo:'tipo',eh_passivo:'ehPassivo'},
   Orcamentos:{subcategoria:'subcategoria',classe:'classe',categoria:'categoria',orc_valor:'valor',tipo:'tipo',dt_competencia:'dt'},
-  Lancamentos:{id:'id',subcategoria:'subcategoria',classe:'classe',conta_origem:'conta_origem',conta_destino:'conta_destino',cartao:'cartao',nome_ativo:'nome_ativo',tipo_fluxo:'tipo',status:'status',dt_transacao:'dt_transacao',dt_competencia:'dt_competencia',dt_liquidacao:'dt_liquidacao',valor:'valor',moeda_transacao:'moeda',forma_transacao:'forma',qtd_parcelas:'parcelas',num_parcela:'num_parcela',fatura_ref:'fatura_ref',id_grupo:'id_grupo',categoria:'categoria',valor_total:'valor_total',descricao:'descricao',descricao_importada:'desc_importada',favorecido:'favorecido',reembolsavel:'reembolsavel',tipo_reembolso:'tipo_reembolso',status_reembolso:'status_reembolso',fechado:'fechado',confianca:'confianca',doc_origem:'doc_origem'},
+  Lancamentos:{id:'id',subcategoria:'subcategoria',classe:'classe',conta_origem:'conta_origem',conta_destino:'conta_destino',cartao:'cartao',nome_ativo:'nome_ativo',tipo_fluxo:'tipo',status:'status',dt_transacao:'dt_transacao',dt_competencia:'dt_competencia',dt_liquidacao:'dt_liquidacao',valor:'valor',moeda_transacao:'moeda',forma_transacao:'forma',qtd_parcelas:'parcelas',num_parcela:'num_parcela',fatura_ref:'fatura_ref',id_grupo:'id_grupo',categoria:'categoria',valor_total:'valor_total',descricao:'descricao',descricao_importada:'desc_importada',favorecido:'favorecido',reembolsavel:'reembolsavel',tipo_reembolso:'tipo_reembolso',status_reembolso:'status_reembolso',status_conciliacao:'conciliacao',fechado:'fechado',confianca:'confianca',doc_origem:'doc_origem'},
   classificador:{subcategoria:'subcategoria',classe:'classe'}
 };
 
